@@ -19,3 +19,23 @@ function showData(dataArray) {
 }
 
 // Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+
+// Función para cargar datos JSON
+function cargarDatos() {
+  fetch(DATA_URL)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Error al cargar el archivo JSON');
+      }
+      return response.json();
+    })
+    .then(data => {
+      showData(data.students); // Accede a la propiedad 'students' y llama a la función showData
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// Carga los datos cuando se carga la página
+cargarDatos();
